@@ -86,7 +86,7 @@ internal final class Convert {
         // Timezone should be 0 as GPX uses UTC time, not local time.
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         
-        // dateTime（YYYY-MM-DDThh:mm:ssZ）
+        // dateTime（YYYY-MM-DDThh:mm:ss.SSSZ）
         formatter.dateFormat = "yyyy"
         
         return formatter
