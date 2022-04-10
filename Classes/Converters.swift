@@ -55,7 +55,7 @@ internal final class Convert {
         formatter.locale = Locale(identifier: "en_US_POSIX")
         
         // dateTime（YYYY-MM-DDThh:mm:ssZ）
-        formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"
+        formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSS'Z'"
         
         return formatter
     }()
