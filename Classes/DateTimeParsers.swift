@@ -10,6 +10,7 @@
 
 import Foundation
 
+
 /**
  Date Parser for use when parsing GPX files, containing elements with date attributions.
  
@@ -36,12 +37,25 @@ final class GPXDateParser {
     private static let second = UnsafeMutablePointer<Int>.allocate(capacity: 1)
     
     // MARK:- String To Date Parsers
-    
+    @available(iOS 11.0, *)
+    private static let isoDateFormatter = ISO8601DateFormatter()
     /// Parses an ISO8601 formatted date string as native Date type.
     static func parse(date string: String?) -> Date? {
         guard let NonNilString = string else {
             return nil
         }
+        
+        if #available(iOS 11.0, *) {
+            isoDateFormatter.formatOptions.insert(.withFractionalSeconds)
+        
+        guard let parsedDate = isoDateFormatter.date(from: NonNilString) else {
+        	return nil
+        }
+        
+        return parsedDate
+       }
+       
+       //return to pre iOS11 - (without fractions)
         
         _ = withVaList([year, month, day, hour, minute,
                         second], { pointer in
